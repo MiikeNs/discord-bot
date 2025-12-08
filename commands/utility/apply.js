@@ -4,7 +4,7 @@ const { guest_role_id, applicantRoleId } = require('../../config/roles.js');
 const { application_channel_id } = require('../../config/channels.js');
 
 module.exports = {
-    data: new SlashCommandBuilder().setName('apply').description('Starts the application process.'),
+    data: new SlashCommandBuilder().setName('apply').setDescription('Starts the application process.'),
     async execute(interaction) {
         const modal = new ModalBuilder()
             .setCustomId('applyModal')
