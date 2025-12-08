@@ -22,11 +22,6 @@ module.exports = (client) => {
   client.on('messageReactionAdd', async (reaction, user) => {
     if (user.bot) return;
 
-    console.log('Reaction detected:', reaction.emoji.toString());
-    console.log('Stored welcomeMessageId:', welcomeMessageId);
-    console.log('Reaction message ID:', reaction.message.id);
-    console.log('Welcome emoji:', welcomeMessageEmoji);
-
     if (reaction.message.id === welcomeMessageId && reaction.emoji.toString() === welcomeMessageEmoji) {
       const member = reaction.message.guild.members.cache.get(user.id);
       const applicantRole = reaction.message.guild.roles.cache.get(applicantRoleId);
