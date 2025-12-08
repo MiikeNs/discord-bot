@@ -1,7 +1,6 @@
 const { welcomeMessageEmoji } = require('../../config/emojis.js');
 const { guest_role_id, applicantRoleId } = require('../../config/roles.js');
-
-const welcome_channel_id = '1441610605344719000';
+const { welcome_channel_id } = require('../../config/channels.js');
 
 let welcomeMessageId = null;
 
