@@ -5,10 +5,11 @@ const { token } = require('./config.json');
 
 // Create a new client instance
 const client = new Client({ intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
+	GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMembers,
+	GatewayIntentBits.GuildMessages,
+	GatewayIntentBits.MessageContent,
+	GatewayIntentBits.GuildMessageReactions,
   ], });
 
   
@@ -69,5 +70,8 @@ client.on(Events.InteractionCreate, async (interaction) => {
 	}
 });
 
-const guildMemberAddHandler = require('./commands/events/welcome.js');
+const guildMemberAddHandler = require('./events/welcome.js');
 guildMemberAddHandler(client);
+const applyEventHandler = require('./events/application.js');
+applyEventHandler(client);
+//End of event file import

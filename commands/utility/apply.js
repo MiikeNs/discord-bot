@@ -3,6 +3,7 @@ const { welcomeMessageEmoji } = require('../../config/emojis.js');
 const { guest_role_id, applicantRoleId } = require('../../config/roles.js');
 const { application_channel_id } = require('../../config/channels.js');
 
+
 module.exports = {
     data: new SlashCommandBuilder().setName('apply').setDescription('Starts the application process.'),
     async execute(interaction) {
@@ -31,6 +32,8 @@ module.exports = {
             .setLabel('Which country are you from?')
             .setStyle(TextInputStyle.Short)
             .setRequired(true);
+
+        const countryRow = new ActionRowBuilder().addComponents(countryInput);
 
         const experienceInput = new TextInputBuilder()
             .setCustomId('experienceInput')

@@ -1,6 +1,7 @@
-const { welcomeMessageEmoji } = require('../../config/emojis.js');
-const { guest_role_id, applicantRoleId } = require('../../config/roles.js');
-const { application_channel_id } = require('../../config/channels.js');
+const { Client, Collection, Events, GatewayIntentBits, MessageFlags } = require('discord.js');
+const { welcomeMessageEmoji } = require('../config/emojis.js');
+const { guestRoleId, applicantRoleId } = require('../config/roles.js');
+const { application_channel_id } = require('../config/channels.js');
 
 module.exports = (client) => {
     client.on('guildMemberUpdate', async (oldMember, newMember) => {
