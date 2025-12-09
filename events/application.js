@@ -1,3 +1,7 @@
+// events/application.js
+// Handle application process when a user gets the applicant role, this feature was mostly created to filter out bots.
+// Created by Nunes.
+
 const { Client, Collection, Events, GatewayIntentBits, MessageFlags } = require('discord.js');
 const { welcomeMessageEmoji } = require('../config/emojis.js');
 const { guestRoleId, applicantRoleId } = require('../config/roles.js');

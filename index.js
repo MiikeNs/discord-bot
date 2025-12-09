@@ -4,13 +4,16 @@ const { Client, Collection, Events, GatewayIntentBits, MessageFlags } = require(
 const { token } = require('./config.json');
 
 // Create a new client instance
-const client = new Client({ intents: [
-	GatewayIntentBits.Guilds,
-	GatewayIntentBits.GuildMembers,
-	GatewayIntentBits.GuildMessages,
-	GatewayIntentBits.MessageContent,
-	GatewayIntentBits.GuildMessageReactions,
-  ], });
+const client = new Client({ 
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMembers,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMessageReactions,
+	],
+	partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+});
 
   
 client.once(Events.ClientReady, (readyClient) => {
@@ -74,4 +77,6 @@ const guildMemberAddHandler = require('./events/welcome.js');
 guildMemberAddHandler(client);
 const applyEventHandler = require('./events/application.js');
 applyEventHandler(client);
+const modalSubmitHandler = require('./events/modalSubmit.js');
+modalSubmitHandler(client);
 //End of event file import

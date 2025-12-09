@@ -4,7 +4,7 @@ const { welcomeMessageEmoji } = require('../config/emojis.js');
 const { guestRoleId, applicantRoleId } = require('../config/roles.js');
 const { welcome_channel_id } = require('../config/channels.js');
 
-let welcomeMessageId = null;
+let welcomeMessageIds = [];
 
 module.exports = (client) => {
   // When someone joins
@@ -14,7 +14,7 @@ module.exports = (client) => {
 
     const channel = member.guild.channels.cache.get(welcome_channel_id);
     const sent_message = await channel.send(`Welcome ${member.user.username}`);
-    welcomeMessageId = sent_message.id;
+    welcomeMessageIds.push(sent_message.id);
     await sent_message.react(welcomeMessageEmoji);
   });
 
@@ -22,7 +22,7 @@ module.exports = (client) => {
   client.on('messageReactionAdd', async (reaction, user) => {
     if (user.bot) return;
 
-    if (reaction.message.id === welcomeMessageId && reaction.emoji.toString() === welcomeMessageEmoji) {
+    if (welcomeMessageIds.includes(reaction.message.id) && reaction.emoji.toString() === welcomeMessageEmoji) {
       const member = reaction.message.guild.members.cache.get(user.id);
       const applicantRole = reaction.message.guild.roles.cache.get(applicantRoleId);
       await member.roles.add(applicantRole);
